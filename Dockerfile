@@ -1,2 +1,2 @@
 From nginx:latest
-COPY /login/index.html /login/html/index.html
+COPY /login/index.html /usr/share/nginx/html/
