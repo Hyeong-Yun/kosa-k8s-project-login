@@ -596,8 +596,10 @@ let requestOptions = {
 fetch(signupform.action, requestOptions)
   .then(response => response.text())
   .then(result => {
-    console.log(result)
-    container.classList.remove("sign-up-mode");
+    console.log(result.slice(2,9))
+    if(!(result.slice(2, 9) === "message")){
+     container.classList.remove("sign-up-mode");
+    }
   }).then(result => {
     
   })
