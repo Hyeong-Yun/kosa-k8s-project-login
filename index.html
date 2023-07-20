@@ -559,14 +559,15 @@ const signinform = document.querySelector(".sign-in-form")
 console.log(username)
 
 sign_up_btn.addEventListener("click", () => {
-container.classList.add("sign-up-mode");
+  container.classList.add("sign-up-mode");
 });
 
 sign_in_btn.addEventListener("click", () => {
-container.classList.remove("sign-up-mode");
+  container.classList.remove("sign-up-mode");
 });
 
 signupform.addEventListener("submit", e => {
+
 console.log('In')
 e.preventDefault();
 
@@ -594,9 +595,15 @@ let requestOptions = {
 
 fetch(signupform.action, requestOptions)
   .then(response => response.text())
-  .then(result => console.log(result))
+  .then(result => {
+    console.log(result)
+    container.classList.remove("sign-up-mode");
+  }).then(result => {
+    
+  })
   .catch(error => console.log('error', error));
-})
+}
+)
 
 
 // Login
@@ -633,6 +640,7 @@ fetch(signinform.action, requestOptions)
 )
 .catch(error => console.log('error', error));
 })
+
 </script>
 </body>
 </html>
