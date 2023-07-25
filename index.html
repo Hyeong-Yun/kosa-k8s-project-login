@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kato Toys</title>
+    <title>ToyDream</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -416,14 +416,13 @@ form.sign-in-form {
             <h2 class="title">Sign in</h2>
             <label class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" id = "sigin-username"/>
+              <input type="text" placeholder="이름" id = "sigin-username"/>
             </label>
             <label class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id ="sigin-password"/>
+              <input type="password" placeholder="비밀번호" id ="sigin-password"/>
             </label>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Or Sign in with social platforms</p>
           </form>
 
           <form action="https://backend.yunhyeong.shop:8081/auth/signup" method="POST" class="sign-up-form">
@@ -431,7 +430,7 @@ form.sign-in-form {
             <h2 class="title">Sign up</h2>
             <label class="input-field" for = "username">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" id = "username" />
+              <input type="text" placeholder="이름" id = "username" />
             </label>
             <label class="input-field" for = "email">
               <i class="fas fa-envelope"></i>
@@ -439,10 +438,24 @@ form.sign-in-form {
             </label>
             <label class="input-field" for = "password">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id = "password"/>
+              <input type="password" placeholder="비밀번호" id = "password"/>
             </label>
+
+            <label class="input-field" for = "phone-number">
+              <i class="fas fa-lock"></i>
+              <input type="text" placeholder="휴대전화" id = "phone-number"/>
+            </label>
+            <label class="input-field" for = "registry-number">
+              <i class="fas fa-lock"></i>
+              <input type="text" placeholder="주민번호" id = "registry-number"/>
+            </label>
+            <label class="input-field" for = "registry-number">
+              <i class="fas fa-lock"></i>
+              <input type="text" placeholder="생년월일" id = "birthDate"/>
+            </label>
+
             <input type="submit" class="btn" value="Sign up"/>
-            <p class="social-text">Or Sign up with social platforms</p>
+           
           </form>
           
         </div>
@@ -547,6 +560,9 @@ const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
+const phoneNumber = document.getElementById("phone-number");
+const birthNumber = document.getElementById("registry-number");
+const birthDate = document.getElementById("birthDate")
 
 const signusername = document.getElementById("sigin-username");
 const sgininpassword = document.getElementById("sigin-password");
@@ -574,16 +590,22 @@ e.preventDefault();
 let user = {
     "username": username.value,
     "password": password.value,
-    "email" : email.value
+    "email" : email.value,
+    "phoneNumber" : phoneNumber.value,
+    "birthNumber" : birthNumber.value,
+    "birthDate" : birthDate.value
 }
 
 let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 let raw = JSON.stringify({
-  "username": user.username,
-  "email": user.email,
-  "password": user.password,
+  "username": username.value,
+    "password": password.value,
+    "email" : email.value,
+    "phoneNumber" : phoneNumber.value,
+    "birthNumber" : birthNumber.value,
+    "birthDate" : birthDate.value
 });
 
 let requestOptions = {
@@ -598,7 +620,6 @@ fetch(signupform.action, requestOptions)
   .then(result => {
     console.log(result.slice(2,9))
     if(!(result.slice(2, 9) === "message")){
-      
      container.classList.remove("sign-up-mode");
     }
   }).then(result => {
