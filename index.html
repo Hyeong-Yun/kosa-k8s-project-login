@@ -380,6 +380,15 @@ form.sign-in-form {
   }
 }
 
+.checkbox-container{
+  display: flex;
+  color: #aaa;
+}
+
+.checkbox-container  input{
+  margin-right: 5px;
+}
+
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
@@ -405,7 +414,7 @@ form.sign-in-form {
     left: 50%;
   }
 }
-    </style>
+</style>
 </head>
 <body>
     <div class="container">
@@ -453,9 +462,12 @@ form.sign-in-form {
               <i class="fas fa-lock"></i>
               <input type="text" placeholder="생년월일" id = "birthDate"/>
             </label>
-
+            <div class = "checkbox-container">
+              <input type="checkbox"></input>
+              <p>개인정보 이용약관 ></p>
+            </div>
             <input type="submit" class="btn" value="Sign up"/>
-           
+            
           </form>
           
         </div>
